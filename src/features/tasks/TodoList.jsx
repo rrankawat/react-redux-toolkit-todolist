@@ -1,6 +1,12 @@
 import { AiFillCheckCircle, AiFillDelete } from 'react-icons/ai';
+import { useSelector, useDispatch } from 'react-redux';
 
-const TodoList = ({ todos, deleteTodo, completeTodo }) => {
+import { deleteTodo, completeTodo } from '../../slices/todoSlice';
+
+const TodoList = () => {
+  const dispatch = useDispatch();
+  const todos = useSelector((state) => state.todo.todos);
+
   return (
     <ul className="list-group mt-5">
       {todos.map((todo) => (
@@ -17,13 +23,13 @@ const TodoList = ({ todos, deleteTodo, completeTodo }) => {
               className={`cursor me-2 badge bg-${
                 todo.isCompleted ? 'secondary' : 'primary'
               }`}
-              onClick={() => completeTodo(todo.id)}
+              onClick={() => dispatch(completeTodo(todo.id))}
             >
               {todo.isCompleted ? 'Undone' : 'Done'}
             </span>
             <span
               className="badge bg-danger cursor"
-              onClick={() => deleteTodo(todo.id)}
+              onClick={() => dispatch(deleteTodo(todo.id))}
             >
               <AiFillDelete />
             </span>

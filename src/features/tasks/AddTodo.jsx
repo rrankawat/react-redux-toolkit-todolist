@@ -1,7 +1,22 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
-const AddTodo = ({ addTodo }) => {
-  const [todo, setTodo] = useState('');
+import { addTodo } from '../../slices/todoSlice';
+
+const AddTodo = () => {
+  const dispatch = useDispatch();
+  const [title, setTitle] = useState('');
+
+  const onClick = () => {
+    const payload = {
+      id: new Date().getTime(),
+      title,
+      isCompleted: false,
+    };
+
+    dispatch(addTodo(payload));
+    setTitle('');
+  };
 
   return (
     <>
@@ -9,12 +24,10 @@ const AddTodo = ({ addTodo }) => {
         type="text"
         className="form-control"
         placeholder="Enter new todo here..."
-        onChange={(e) => setTodo(e.target.value)}
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
       />
-      <button
-        className="btn btn-primary btn-sm mt-3"
-        onClick={() => addTodo(todo)}
-      >
+      <button className="btn btn-primary btn-sm mt-3" onClick={onClick}>
         Add New
       </button>
     </>
