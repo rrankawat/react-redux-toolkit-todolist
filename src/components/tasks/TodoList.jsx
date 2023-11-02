@@ -1,7 +1,7 @@
 import { AiFillCheckCircle, AiFillDelete } from 'react-icons/ai';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { deleteTodo, completeTodo } from '../../slices/todoSlice';
+import { deleteTodo, completeTodo } from '../../features/todo/todoSlice';
 
 const TodoList = () => {
   const dispatch = useDispatch();
