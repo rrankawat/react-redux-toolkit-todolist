@@ -9,9 +9,9 @@ const AddTodo = () => {
 
   const onClick = () => {
     const payload = {
-      id: new Date().getTime(),
       title,
-      isCompleted: false,
+      completed: false,
+      userId: 1,
     };
 
     dispatch(addTodo(payload));

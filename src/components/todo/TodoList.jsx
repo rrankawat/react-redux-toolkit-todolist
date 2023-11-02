@@ -8,7 +8,7 @@ const TodoList = () => {
   const todos = useSelector((state) => state.todo.todos);
 
   return (
-    <ul className="list-group mt-5">
+    <ul className="list-group my-5">
       {todos.map((todo) => (
         <li
           className="list-group-item d-flex justify-content-between align-items-center"
@@ -16,16 +16,16 @@ const TodoList = () => {
         >
           <span>
             {todo.title}{' '}
-            {todo.isCompleted ? <AiFillCheckCircle color="green" /> : ''}
+            {todo.completed ? <AiFillCheckCircle color="green" /> : ''}
           </span>
           <div>
             <span
               className={`cursor me-2 badge bg-${
-                todo.isCompleted ? 'secondary' : 'primary'
+                todo.completed ? 'secondary' : 'primary'
               }`}
-              onClick={() => dispatch(completeTodo(todo.id))}
+              onClick={() => dispatch(completeTodo(todo))}
             >
-              {todo.isCompleted ? 'Undone' : 'Done'}
+              {todo.completed ? 'Undone' : 'Done'}
             </span>
             <span
               className="badge bg-danger cursor"
